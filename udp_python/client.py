@@ -10,8 +10,10 @@ UDP_PORT_NO = int(sys.argv[2])
 
 message = input("Message: ")
 
+# create udp socket
 client_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 while True:
-    client_sock.sendto(message, (UDP_IP_ADDRESS, UDP_PORT_NO))
+    # encode bytes
+    client_sock.sendto(message.encode(), (UDP_IP_ADDRESS, int(UDP_PORT_NO)))
     message = input("Message: ")
