@@ -17,7 +17,7 @@ int main(int argc, char* argv[]){
         printf("Usage: %s port-number\n", argv[0]);
         exit(1);
     }
-    
+
     char *msg_buf; /* message buffer */
     msg_buf = (char *) malloc(BUFSIZE * sizeof(char *));
     if(msg_buf == NULL) {
@@ -84,7 +84,7 @@ int main(int argc, char* argv[]){
                 close(new_sock);
         }
     }
-    
+    free(msg_buf);
     close(sock); /* close socket */
     return 0;
 }
