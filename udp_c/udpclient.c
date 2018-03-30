@@ -33,7 +33,7 @@ int main(int argc, char *argv[]){
     /* user inputs for a message */
     printf("Message - max %d chars: ", BUFSIZE);
     fgets(msg_buf, BUFSIZE, stdin);
-    strcpy(ip_addr, argv[1]);
+    strncpy(ip_addr, argv[1], sizeof(ip_addr));
     port = atoi(argv[2]);   /* convert to binary */
 
     /* create a socket to send on */
@@ -71,14 +71,13 @@ int main(int argc, char *argv[]){
         /* send a message to the server */
         size = sendto(sock, (char *) msg_buf, nbytes, flags,
             (struct sockaddr*)&destination, sizeof(destination));
-
         if( size < 0 ){
             perror("sendto failed");
             return -1;
         }
         /* NOTE: sendto success does NOT mean it is delivered.*/
         printf("sendto success\n");
-        
+
         /* user inputs for another message */
         memset(msg_buf, 0, BUFSIZE);
         printf("Message - max %d chars: ", BUFSIZE);

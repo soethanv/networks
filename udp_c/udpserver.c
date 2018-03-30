@@ -19,7 +19,8 @@ int main(int argc, char* argv[]){
     struct sockaddr_in sender;  /* source - sender */
 
     if(argc < 2){
-        printf("Usage: %s port-number", argv[0]);
+        printf("Usage: %s port-number\n", argv[0]);
+        exit(1);
     }
     
     msg_buf = (char *) malloc(BUFSIZE * sizeof(char *));
